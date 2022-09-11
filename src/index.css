@@ -107,6 +107,14 @@ button{
   color: #FFF;
 }
 
+.dieHeld{
+  background-color: #59E391;
+}
+
+.dieHeld:hover{
+  background-color: #59e390a0;
+}
+
 button:hover{
   background-color: #5035ffda;
 
