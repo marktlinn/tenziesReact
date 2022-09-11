@@ -36,7 +36,7 @@ main{
 
 .titleText{
   font-weight: 700;
-  font-size: 2.5rem;
+  font-size: 4rem;
   line-height: 3rem;
   display: flex;
   align-items: center;
@@ -45,10 +45,10 @@ main{
 }
 
 .text{
-  font-family: 'Inter';
+  font-family: Inter;
   font-style: normal;
   font-weight: 400;
-  font-size: 1.3rem;
+  font-size: 2rem;
   line-height: 1.6rem;
   display: flex;
   align-items: center;

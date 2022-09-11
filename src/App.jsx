@@ -1,19 +1,33 @@
 import React from "react"
-// import Confetti from "react-confetti"
+import Confetti from "react-confetti"
 import Die from "./components/Die"
 import {nanoid} from 'nanoid'
 
 function App() {
   const [dice, setDieNum] = React.useState(allNewDice())
-// function to generate a random number between 1-6
+  const [tenzies, setTenzies] = React.useState(false)
+
+  React.useEffect(()=>{
+    let won = dice.every(die=> {
+      if (die.isHeld === true && die.value === dice[0].value){
+        return true;
+      }
+    })
+    if(won === true) setTenzies(true)
+  }, [dice])
+// functions
+  function newDie(){
+    return {
+      value: Math.floor(Math.random() * (6 - 1 + 1) + 1), 
+      isHeld: false,
+      id: nanoid()
+    }
+  }
+
   function allNewDice (){
     const nums =  []
       for(let i = 0; i<10; i++){
-      nums.push({
-        value: Math.floor(Math.random() * (6 - 1 + 1) + 1), 
-        isHeld: false,
-        id: nanoid()
-      })
+      nums.push(newDie())
     } 
     return nums
   }
@@ -24,11 +38,18 @@ function App() {
     }))
   }
 
+  // function rollDice(){
+  //   setDieNum(allNewDice());
+  // }
   function rollDice(){
-    setDieNum(allNewDice());
+    let newVal = Math.floor(Math.random() * (6 - 1 + 1) + 1);
+    return setDieNum(dice.map(die=> {
+      return die.isHeld === true ? 
+      die : newDie()
+    }))
   }
 
-console.log(dice)
+
   const dieSet = dice.map(elem=> {
   return <Die 
   key={elem.id}
@@ -40,7 +61,7 @@ console.log(dice)
   return (
     <main>
       <h1 className="titleText">Tenzies</h1>
-      <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+      <p className="text">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
       <div 
         className="dice-section">
           {dieSet}
