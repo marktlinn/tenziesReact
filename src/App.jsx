@@ -43,10 +43,18 @@ function App() {
   // }
   function rollDice(){
     let newVal = Math.floor(Math.random() * (6 - 1 + 1) + 1);
-    return setDieNum(dice.map(die=> {
-      return die.isHeld === true ? 
-      die : newDie()
-    }))
+    if(!tenzies){
+      return setDieNum(dice.map(die=> {
+        return die.isHeld === true ? 
+        die : newDie()
+      }))
+    }
+    else {
+      if(tenzies === true){
+        setTenzies(false);
+        setDieNum(allNewDice())
+      }
+    }
   }
 
 
