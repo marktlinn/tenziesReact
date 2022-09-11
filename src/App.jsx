@@ -60,6 +60,8 @@ function App() {
 })
   return (
     <main>
+      {tenzies && <Confetti 
+      width={Window.innerWidth}/>}
       <h1 className="titleText">Tenzies</h1>
       <p className="text">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
       <div 
@@ -68,7 +70,7 @@ function App() {
       </div>
       <button
       onClick={rollDice}
-      >Roll Dice</button>
+      >{tenzies && 'Play Again' || 'Roll Dice'}</button>
     </main>
 
   )
