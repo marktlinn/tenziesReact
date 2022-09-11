@@ -1,5 +1,7 @@
+@import url('https://fonts.googleapis.com/css2?family=Karla:wght@400;700&display=swap');
+
 :root {
-  font-family: Inter, Avenir, Helvetica, Arial, sans-serif;
+  font-family: 'Karla', Inter, Avenir, Helvetica, Arial, sans-serif;
   font-size: 62.5%;
   line-height: 24px;
   font-weight: 400;
@@ -13,5 +15,39 @@ a {
 }
 
 body {
-  margin: 0;
+  margin: auto;
+  background-color: #0B2434;
+  padding: 3rem;
+  color: #2B283A;
+}
+
+main{
+  margin: 2rem;
+  padding: 27rem 15rem;
+  background-color: #FFF;
+  border-radius: .5rem;
+}
+
+.titleText{
+  font-weight: 700;
+  font-size: 2.5rem;
+  line-height: 3rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.03em;
+}
+
+.text{
+  font-family: 'Inter';
+  font-style: normal;
+  font-weight: 400;
+  font-size: 1.3rem;
+  line-height: 1.6rem;
+  display: flex;
+  align-items: center;
+  text-align: center;
+  letter-spacing: -0.03em;
+  color: #4A4E74;
+
 }

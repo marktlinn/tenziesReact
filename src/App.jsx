@@ -4,9 +4,12 @@ import React from "react"
 
 function App() {
   return (
-    <div>
-    <h1>Hello World</h1>
-    </div>
+    <main>
+    <h1 className="titleText">Tenzies</h1>
+    <p>Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+    </main>
+
+
   )
 }
 
