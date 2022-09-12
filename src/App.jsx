@@ -6,7 +6,11 @@ import {nanoid} from 'nanoid'
 function App() {
   const [dice, setDieNum] = React.useState(allNewDice())
   const [tenzies, setTenzies] = React.useState(false)
-
+  const [timer, setTimer] = React.useState(0)
+  const [gameStarted, setGameStarted] = React.useState(false)
+  const [score, setScore] = React.useState(()=>{
+    JSON.parse(localStorage.getItem('score')) || 'niente'
+  })
   React.useEffect(()=>{
     let won = dice.every(die=> {
       if (die.isHeld === true && die.value === dice[0].value){
@@ -15,7 +19,23 @@ function App() {
     })
     if(won === true) setTenzies(true)
   }, [dice])
-// functions
+
+  //timer function
+
+  // function counter(time){
+  //   console.log(time)
+  //   return setTimer(time= time+1)
+  // }
+
+  function startTimer(){
+    React.useEffect(() => {
+      setInterval(() => {
+        setTimer(timer+1);
+      }, 1000);
+    }, [timer]);
+  }
+
+
   function newDie(){
     return {
       value: Math.floor(Math.random() * (6 - 1 + 1) + 1), 
@@ -31,19 +51,23 @@ function App() {
     } 
     return nums
   }
-  
+
   function holdDie(dieId){
     setDieNum(prev=> prev.map(die=> {
       return die.id === dieId ? {...die, isHeld: !die.isHeld} : die; 
     }))
   }
 
-  // function rollDice(){
-  //   setDieNum(allNewDice());
-  // }
   function rollDice(){
     let newVal = Math.floor(Math.random() * (6 - 1 + 1) + 1);
     if(!tenzies){
+      if(!gameStarted){
+        setGameStarted(true);
+        setInterval(() => {
+          setTimer(prevCount => prevCount + 1);
+        }, 1000);
+      }
+      console.log(timer)
       return setDieNum(dice.map(die=> {
         return die.isHeld === true ? 
         die : newDie()
@@ -51,11 +75,15 @@ function App() {
     }
     else {
       if(tenzies === true){
+        setGameStarted(false)
+        // function to stop the timer needed here
         setTenzies(false);
         setDieNum(allNewDice())
       }
     }
   }
+
+
 
 
   const dieSet = dice.map(elem=> {
