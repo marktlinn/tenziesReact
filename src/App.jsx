@@ -13,7 +13,7 @@ function App() {
     JSON.parse(localStorage.getItem('score')) || null
   })
 
-
+  //determined if the game is won: all dice are the same
   React.useEffect(()=>{
     let won = dice.every(die=> {
       if (die.isHeld === true && die.value === dice[0].value){
@@ -26,27 +26,28 @@ function App() {
     }
   }, [dice])
 
+  //starts the timer if the game isn't won and has been started, otherwise stops the timer
   React.useEffect(()=>{
     let interval = null;
     if(!tenzies && gameStarted === true){
-      setInterval(()=>{
+      interval = setInterval(()=>{
         setTimer(prevCount=> prevCount +1)
       }, 1000)
     }
-    else if (tenzies){
+    else {
       clearInterval(interval)
-      console.log('final count', timer)
+      console.log('timer stopped', interval, timer)
     }
-    return ()=>{ clearInterval(interval) }
+    return ()=>{ 
+      clearInterval(interval)
+     }
   }, [gameStarted])
-
+  // setting the last score:
   React.useEffect(()=>{
     if(tenzies === true){
         setScore(()=>{
           localStorage.setItem('score', JSON.stringify(timer))
         })
-        console.log('storing locally', JSON.parse(localStorage.getItem('score')))
-        
     }
   }, [tenzies])
 
@@ -80,7 +81,7 @@ function App() {
       if(!gameStarted){
         setGameStarted(true);
       }
-      console.log(timer)
+      console.log('roll timer',timer)
       return setDieNum(dice.map(die=> {
         return die.isHeld === true ? 
         die : newDie()
@@ -88,10 +89,10 @@ function App() {
     }
     else {
       if(tenzies === true){
-        // function to stop the timer needed here
         setTenzies(false);
         setDieNum(allNewDice())
-        console.log('tenzies true',timer)
+        console.log('game complete',timer)
+        setTimer(0)
       }
     }
   }
