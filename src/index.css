@@ -91,6 +91,28 @@ button:active{
   gap: 20px;
 }
 
+@media screen and (max-width:380px){
+  .titleText{
+    font-size: 2rem;
+    margin: 0;
+  }
+  .text{
+    font-size: 1.2rem;
+  }
+  .dice-section{
+    grid-template: auto auto / repeat(2, 5fr);
+  }
+  main{
+    height: 600px;
+    background-color: #F5F5F5;
+    border-radius: .5rem;
+    justify-content: flex-start;
+  }
+  button{
+    margin: 1rem;
+  }
+}
+
 .die{
   background-color: #FFFFFF;
   box-shadow: 0 2px 2px rgba(0, 0, 0, 0.15);
