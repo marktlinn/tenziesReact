@@ -10,7 +10,7 @@ function App() {
   const [timer, setTimer] = React.useState(0)
   const [gameStarted, setGameStarted] = React.useState(false)
   const [score, setScore] = React.useState(()=>{
-    JSON.parse(localStorage.getItem('score')) || null
+    return JSON.parse(localStorage.getItem('score')) || 0
   })
 
   //determined if the game is won: all dice are the same
@@ -36,7 +36,6 @@ function App() {
     }
     else {
       clearInterval(interval)
-      console.log('timer stopped', interval, timer)
     }
     return ()=>{ 
       clearInterval(interval)
@@ -45,9 +44,11 @@ function App() {
   // setting the last score:
   React.useEffect(()=>{
     if(tenzies === true){
-        setScore(()=>{
-          localStorage.setItem('score', JSON.stringify(timer))
-        })
+      if(timer<=score && score >0){
+        console.log('setting new score in local storage: ', score)
+        localStorage.setItem('score', JSON.stringify(timer))
+        setScore(timer);
+      }
     }
   }, [tenzies])
 
@@ -73,7 +74,6 @@ function App() {
       return die.id === dieId ? {...die, isHeld: !die.isHeld} : die; 
     }))
   }
-
   //Timer functions
 
   function rollDice(){
@@ -98,7 +98,7 @@ function App() {
   }
 
 
-
+  console.log('score', score)
 
   const dieSet = dice.map(elem=> {
   return <Die 
@@ -121,6 +121,10 @@ function App() {
       <button
       onClick={rollDice}
       >{tenzies && 'Play Again' || 'Roll Dice'}</button>
+      <div className="score-section">
+        { score>0 ? <p className="score"><strong>Best Time: </strong> {score}</p> : <p className="best-score"><strong>No Previous Best Time</strong></p>}
+        <p className="score"><strong>Current Score: </strong>{timer}</p>
+      </div>
     </main>
 
   )
