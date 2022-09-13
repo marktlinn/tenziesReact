@@ -4,36 +4,51 @@ import Die from "./components/Die"
 import {nanoid} from 'nanoid'
 
 function App() {
+
   const [dice, setDieNum] = React.useState(allNewDice())
   const [tenzies, setTenzies] = React.useState(false)
   const [timer, setTimer] = React.useState(0)
   const [gameStarted, setGameStarted] = React.useState(false)
   const [score, setScore] = React.useState(()=>{
-    JSON.parse(localStorage.getItem('score')) || 'niente'
+    JSON.parse(localStorage.getItem('score')) || null
   })
+
+
   React.useEffect(()=>{
     let won = dice.every(die=> {
       if (die.isHeld === true && die.value === dice[0].value){
         return true;
       }
     })
-    if(won === true) setTenzies(true)
+    if(won === true) {
+      setTenzies(true)
+      setGameStarted(false)
+    }
   }, [dice])
 
-  //timer function
+  React.useEffect(()=>{
+    let interval = null;
+    if(!tenzies && gameStarted === true){
+      setInterval(()=>{
+        setTimer(prevCount=> prevCount +1)
+      }, 1000)
+    }
+    else if (tenzies){
+      clearInterval(interval)
+      console.log('final count', timer)
+    }
+    return ()=>{ clearInterval(interval) }
+  }, [gameStarted])
 
-  // function counter(time){
-  //   console.log(time)
-  //   return setTimer(time= time+1)
-  // }
-
-  function startTimer(){
-    React.useEffect(() => {
-      setInterval(() => {
-        setTimer(timer+1);
-      }, 1000);
-    }, [timer]);
-  }
+  React.useEffect(()=>{
+    if(tenzies === true){
+        setScore(()=>{
+          localStorage.setItem('score', JSON.stringify(timer))
+        })
+        console.log('storing locally', JSON.parse(localStorage.getItem('score')))
+        
+    }
+  }, [tenzies])
 
 
   function newDie(){
@@ -58,14 +73,12 @@ function App() {
     }))
   }
 
+  //Timer functions
+
   function rollDice(){
-    let newVal = Math.floor(Math.random() * (6 - 1 + 1) + 1);
     if(!tenzies){
       if(!gameStarted){
         setGameStarted(true);
-        setInterval(() => {
-          setTimer(prevCount => prevCount + 1);
-        }, 1000);
       }
       console.log(timer)
       return setDieNum(dice.map(die=> {
@@ -75,10 +88,10 @@ function App() {
     }
     else {
       if(tenzies === true){
-        setGameStarted(false)
         // function to stop the timer needed here
         setTenzies(false);
         setDieNum(allNewDice())
+        console.log('tenzies true',timer)
       }
     }
   }
