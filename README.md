@@ -4,7 +4,9 @@ This project was built purely for fun. I used it as an opportunity to practice c
 
 **Link to project:** https://effulgent-marshmallow-8bc03e.netlify.app
 
-**images
+<img width="1422" alt="Screenshot 2022-09-13 at 18 22 46" src="https://user-images.githubusercontent.com/88390425/189958660-40382c34-99db-4173-8a00-e9d518fc0397.png">
+<img width="1303" alt="Screenshot 2022-09-13 at 18 22 59" src="https://user-images.githubusercontent.com/88390425/189958678-850c837b-8290-4cea-a724-af1120802fec.png">
+
 
 ## How It's Made:
 
