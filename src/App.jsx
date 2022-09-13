@@ -36,6 +36,7 @@ function App() {
     }
     else {
       clearInterval(interval)
+      console.log('finished')
     }
     return ()=>{ 
       clearInterval(interval)
@@ -44,7 +45,7 @@ function App() {
   // setting the last score:
   React.useEffect(()=>{
     if(tenzies === true){
-      if(timer<=score && score >0){
+      if(timer<=score || score ===0){
         console.log('setting new score in local storage: ', score)
         localStorage.setItem('score', JSON.stringify(timer))
         setScore(timer);
@@ -81,7 +82,6 @@ function App() {
       if(!gameStarted){
         setGameStarted(true);
       }
-      console.log('roll timer',timer)
       return setDieNum(dice.map(die=> {
         return die.isHeld === true ? 
         die : newDie()
@@ -96,9 +96,6 @@ function App() {
       }
     }
   }
-
-
-  console.log('score', score)
 
   const dieSet = dice.map(elem=> {
   return <Die 
