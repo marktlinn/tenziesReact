@@ -14,6 +14,12 @@ a {
   text-decoration: none;
 }
 
+.container{
+  display:flex;
+  flex-direction: column;
+}
+
+
 body {
   margin: auto auto;
   background-color: #0B2434;
@@ -204,4 +210,19 @@ button:active{
 
 .dieHeld:hover{
   background-color: #59e390a0;
+}
+
+
+footer{
+  padding-bottom: 1rem;
+  color: var(--dark-brown);
+  margin:auto;
+  color:#F5F5F5;
+}
+
+.profile-tags{
+  display: flex;
+  align-items: center;
+  gap: 1rem;
+  font-size: 1.8rem;
 }

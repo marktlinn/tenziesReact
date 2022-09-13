@@ -2,7 +2,7 @@ import React from "react"
 import Confetti from "react-confetti"
 import Die from "./components/Die"
 import {nanoid} from 'nanoid'
-
+import Footer from './components/Footer'
 function App() {
 
   const [dice, setDieNum] = React.useState(allNewDice())
@@ -109,24 +109,26 @@ function App() {
   />
 })
   return (
-    <main>
-      {tenzies && <Confetti 
-      width={Window.innerWidth}/>}
-      <h1 className="titleText">Tenzies</h1>
-      <p className="text">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
-      <div 
-        className="dice-section">
-          {dieSet}
-      </div>
-      <button
-      onClick={rollDice}
-      >{tenzies && 'Play Again' || 'Roll Dice'}</button>
-      <div className="score-section">
-        { score>0 ? <p className="score"><strong>Best Time: </strong> {score}</p> : <p className="best-score"><strong>No Previous Best Time</strong></p>}
-        <p className="score"><strong>Current Score: </strong>{timer}</p>
-      </div>
-    </main>
-
+    <div className="container">
+      <main>
+        {tenzies && <Confetti 
+        width={Window.innerWidth}/>}
+        <h1 className="titleText">Tenzies</h1>
+        <p className="text">Roll until all dice are the same. Click each die to freeze it at its current value between rolls.</p>
+        <div 
+          className="dice-section">
+            {dieSet}
+        </div>
+        <button
+        onClick={rollDice}
+        >{tenzies && 'Play Again' || 'Roll Dice'}</button>
+        <div className="score-section">
+          { score>0 ? <p className="score"><strong>Best Time: </strong> {score}</p> : <p className="best-score"><strong>No Previous Best Time</strong></p>}
+          <p className="score"><strong>Current Score: </strong>{timer}</p>
+        </div>
+      </main>
+      <Footer />
+    </div>
   )
 }
 
