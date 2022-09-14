@@ -24,6 +24,7 @@ body {
   margin: auto auto;
   background-color: #0B2434;
   color: #2B283A;
+  padding: 2rem;
 }
 
 main{
@@ -98,6 +99,9 @@ button:active{
 }
 
 @media screen and (max-width:380px){
+  body{
+    padding: .5rem;
+  }
   .titleText{
     font-size: 2rem;
     margin: 0;
@@ -109,7 +113,9 @@ button:active{
     grid-template: auto auto / repeat(2, 5fr);
   }
   main{
-    height: 600px;
+    margin: auto;
+    width: 85%;
+    height: 90%;
     background-color: #F5F5F5;
     border-radius: .5rem;
     justify-content: flex-start;
