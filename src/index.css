@@ -70,6 +70,7 @@ button{
   align-items: center;
   text-align: center;
   color: #FFF;
+  margin-top: 1rem;
 }
 
 button:hover{
