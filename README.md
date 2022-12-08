@@ -3,7 +3,7 @@ A simple game for children, where you roll ten dice and then selecting a number 
 This project was built purely for fun. I used it as an opportunity to practice core elements of React, JS and CSS. It did lead to some competition amongst my nephews who enjoyed playing it and wanted to achieve the lowest time score possible. I thought the use of the confetti component was a nice touch on completing the game too.
 
 **Link to project:** https://tenzies-fe-app.netlify.app/
-
+![TenziesGif](https://user-images.githubusercontent.com/88390425/206441302-9a82cdc4-03be-41ae-a0dc-847eb6c29c5e.gif)
 <img width="1422" alt="Screenshot 2022-09-13 at 18 22 46" src="https://user-images.githubusercontent.com/88390425/189958660-40382c34-99db-4173-8a00-e9d518fc0397.png">
 <img width="1303" alt="Screenshot 2022-09-13 at 18 22 59" src="https://user-images.githubusercontent.com/88390425/189958678-850c837b-8290-4cea-a724-af1120802fec.png">
 
